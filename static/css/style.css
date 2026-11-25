@@ -1,0 +1,292 @@
+/* Skyfall Sound & Light — Custom Stage Lighting & Pro Audio Styles */
+
+:root {
+  --background: 240 18% 5%;       /* #090a0f Deep Dark Onyx */
+  --foreground: 0 0% 98%;         /* #fcfcfc Crystal White */
+  --primary: 188 100% 50%;        /* #00f0ff Electric Cyan */
+  --primary-foreground: 240 18% 5%;
+  --secondary: 240 12% 12%;       /* #171822 Dark Metallic Slate */
+  --secondary-foreground: 0 0% 98%;
+  --accent: 292 84% 61%;          /* #d946ef Neon Magenta Purple */
+  --accent-foreground: 0 0% 100%;
+  --muted: 240 10% 60%;
+  --muted-foreground: 240 10% 75%;
+  --card: 240 16% 8%;            /* #10121a Onyx Card */
+  --border: 240 12% 18%;         /* #242636 Border */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: 'Syne', sans-serif;
+}
+
+/* Glassmorphism Cyber */
+.glass-cyber {
+  background: rgba(16, 18, 26, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: rgba(23, 24, 34, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-card:hover {
+  border-color: rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
+}
+
+/* Glowing Neon Text & Borders */
+.glow-cyan {
+  text-shadow: 0 0 15px rgba(0, 240, 255, 0.6), 0 0 30px rgba(0, 240, 255, 0.3);
+}
+
+.glow-magenta {
+  text-shadow: 0 0 15px rgba(217, 70, 239, 0.6), 0 0 30px rgba(217, 70, 239, 0.3);
+}
+
+.glow-box-cyan {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+.glow-box-magenta {
+  box-shadow: 0 0 20px rgba(217, 70, 239, 0.3);
+}
+
+/* Stage Lighting Beam Background Effect */
+.stage-beam-bg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.15) 0%, rgba(217, 70, 239, 0.08) 35%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Equalizer Visualizer Bars */
+.eq-visualizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 40px;
+}
+
+.eq-bar {
+  width: 4px;
+  background: linear-gradient(to top, #00f0ff, #d946ef);
+  border-radius: 999px;
+  animation: eq-bounce 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes eq-bounce {
+  0% { height: 15%; opacity: 0.4; }
+  50% { height: 95%; opacity: 1; filter: drop-shadow(0 0 6px #00f0ff); }
+  100% { height: 35%; opacity: 0.7; }
+}
+
+/* Laser Scanning Line Animation */
+.laser-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00f0ff, #d946ef, transparent);
+  box-shadow: 0 0 15px #00f0ff, 0 0 25px #d946ef;
+  animation: laser-scan 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  opacity: 0.7;
+}
+
+@keyframes laser-scan {
+  0% { top: 0%; opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* No Scrollbar Helper */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Hover Zoom Effect */
+.img-hover {
+  overflow: hidden;
+}
+.img-hover img {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.img-hover:hover img {
+  transform: scale(1.06);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-up {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Modal Visibility State */
+.modal-active {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.modal-active .modal-dialog {
+  transform: translateY(0) scale(1) !important;
+}
+
+/* Mobile Menu Drawer Active State */
+.mobile-menu-active {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Interactive Option Active State */
+.option-card.active {
+  border-color: #00f0ff !important;
+  background-color: rgba(0, 240, 255, 0.1) !important;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.25) !important;
+}
+
+/* =============================================================
+ * Smash Balloon Social Feed Styles
+ * ============================================================= */
+.smash-balloon-badge-instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: white;
+}
+
+.smash-balloon-badge-facebook {
+  background: #1877f2;
+  color: white;
+}
+
+.smash-balloon-badge-tiktok {
+  background: #000000;
+  border: 1px solid rgba(0, 240, 255, 0.5);
+  color: #00f0ff;
+}
+
+.sb-post-card {
+  position: relative;
+  cursor: pointer;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: #10121a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.35s ease;
+}
+
+.sb-post-card:hover {
+  transform: translateY(-4px);
+  border-color: #00f0ff;
+  box-shadow: 0 10px 30px rgba(0, 240, 255, 0.2);
+}
+
+.sb-post-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(9, 10, 15, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.sb-post-card:hover .sb-post-overlay {
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .sb-post-overlay {
+    padding: 1rem;
+  }
+}
+
+/* Smash Balloon Lightbox */
+#smashLightboxModal {
+  transition: opacity 0.3s ease;
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  header nav {
+    gap: 0.75rem;
+  }
+
+  header nav .flex.items-center.gap-3 {
+    gap: 0.5rem;
+  }
+
+  .sb-post-card {
+    border-radius: 1.25rem;
+  }
+
+  #quoteCalcForm .grid.sm\:grid-cols-2 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  #quoteCalcForm .grid.sm\:grid-cols-2 > div {
+    width: 100%;
+  }
+
+  #quoteCalcForm select,
+  #quoteCalcForm input[type="range"] {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .glass-card {
+    padding: 1.25rem;
+  }
+
+  .sb-post-overlay {
+    padding: 1rem;
+  }
+
+  .mobile-nav-link {
+    font-size: 1.75rem;
+  }
+
+  .modal-dialog {
+    padding: 1rem;
+  }
+}

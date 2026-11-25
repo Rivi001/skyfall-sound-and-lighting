@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}Staff Portal & Booking Dashboard — Skyfall Sound & Light{% endblock %}
+
+{% block content %}
+<section class="py-20 bg-background">
+  <div class="mx-auto max-w-8xl px-6 lg:px-10">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10 pb-6 border-b border-white/10">
+      <div>
+        <div class="text-xs uppercase tracking-[0.25em] text-accent font-bold mb-1">Staff Internal Portal</div>
+        <h1 class="font-display text-4xl font-extrabold text-white">Event Quote Requests & Inquiries</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-bold text-primary bg-primary/10 border border-primary/30 px-3 py-1.5 rounded-full">{{ bookings|length }} Bookings</span>
+        <span class="text-xs font-bold text-white bg-secondary border border-white/10 px-3 py-1.5 rounded-full">{{ enquiries|length }} Contact Messages</span>
+      </div>
+    </div>
+
+    <!-- Event Quote Bookings Table -->
+    <div class="mb-16">
+      <h2 class="font-display text-2xl font-bold text-white mb-6 flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-primary"></span>
+        Event Quote Submissions
+      </h2>
+      
+      {% if bookings %}
+      <div class="glass-card rounded-3xl overflow-hidden border border-white/10">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm text-foreground/80">
+            <thead class="bg-secondary/80 text-xs text-primary font-bold uppercase tracking-wider border-b border-white/10">
+              <tr>
+                <th class="px-6 py-4">ID</th>
+                <th class="px-6 py-4">Client Name</th>
+                <th class="px-6 py-4">Event Type</th>
+                <th class="px-6 py-4">Date & Venue</th>
+                <th class="px-6 py-4">Guests</th>
+                <th class="px-6 py-4">Services Requested</th>
+                <th class="px-6 py-4">Contact Details</th>
+                <th class="px-6 py-4">Submitted At</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/10">
+              {% for b in bookings %}
+              <tr class="hover:bg-white/5 transition-colors">
+                <td class="px-6 py-4 font-mono text-xs text-foreground/40">#{{ b.id }}</td>
+                <td class="px-6 py-4 font-bold text-white">{{ b.name }}</td>
+                <td class="px-6 py-4"><span class="bg-accent/20 text-accent font-bold text-xs px-2.5 py-1 rounded-full border border-accent/30">{{ b.event_type }}</span></td>
+                <td class="px-6 py-4">
+                  <div class="text-white text-xs font-semibold">{{ b.event_date or 'TBD' }}</div>
+                  <div class="text-[11px] text-foreground/50">{{ b.venue_location }}</div>
+                </td>
+                <td class="px-6 py-4 text-xs font-medium text-white">{{ b.guest_count }}</td>
+                <td class="px-6 py-4 text-xs text-foreground/70 max-w-xs">{{ b.services_needed }}</td>
+                <td class="px-6 py-4">
+                  <div class="text-xs text-primary font-semibold">{{ b.phone }}</div>
+                  <div class="text-[11px] text-foreground/50">{{ b.email }}</div>
+                </td>
+                <td class="px-6 py-4 text-[11px] text-foreground/50">{{ b.created_at }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {% else %}
+      <div class="glass-cyber rounded-3xl p-8 text-center text-foreground/60 text-sm">
+        No event quote submissions recorded yet.
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- General Inquiries Table -->
+    <div>
+      <h2 class="font-display text-2xl font-bold text-white mb-6 flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-accent"></span>
+        Direct Contact Messages
+      </h2>
+
+      {% if enquiries %}
+      <div class="glass-card rounded-3xl overflow-hidden border border-white/10">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm text-foreground/80">
+            <thead class="bg-secondary/80 text-xs text-accent font-bold uppercase tracking-wider border-b border-white/10">
+              <tr>
+                <th class="px-6 py-4">ID</th>
+                <th class="px-6 py-4">Name</th>
+                <th class="px-6 py-4">Email</th>
+                <th class="px-6 py-4">Phone / Area</th>
+                <th class="px-6 py-4">Message</th>
+                <th class="px-6 py-4">Date</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/10">
+              {% for e in enquiries %}
+              <tr class="hover:bg-white/5 transition-colors">
+                <td class="px-6 py-4 font-mono text-xs text-foreground/40">#{{ e.id }}</td>
+                <td class="px-6 py-4 font-bold text-white">{{ e.name }}</td>
+                <td class="px-6 py-4 text-xs text-primary">{{ e.email }}</td>
+                <td class="px-6 py-4">
+                  <div class="text-xs text-white">{{ e.phone or 'N/A' }}</div>
+                  <div class="text-[11px] text-foreground/50">{{ e.location }}</div>
+                </td>
+                <td class="px-6 py-4 text-xs text-foreground/80 max-w-sm">{{ e.message }}</td>
+                <td class="px-6 py-4 text-[11px] text-foreground/50">{{ e.created_at }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {% else %}
+      <div class="glass-cyber rounded-3xl p-8 text-center text-foreground/60 text-sm">
+        No direct contact messages recorded yet.
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

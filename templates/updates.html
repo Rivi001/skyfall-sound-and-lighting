@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+
+{% block title %}Event Gallery & Live Social Feeds — Skyfall Sound & Light Durban{% endblock %}
+
+{% block content %}
+<section class="py-24 bg-background relative overflow-hidden">
+  <!-- Background Beam -->
+  <div class="stage-beam-bg opacity-20"></div>
+
+  <div class="relative z-10 mx-auto max-w-8xl px-6 lg:px-10">
+    <!-- Header -->
+    <div class="max-w-3xl mb-12">
+      <div class="inline-flex items-center gap-2 rounded-full bg-secondary/80 border border-primary/30 px-4 py-1.5 mb-4">
+        <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+        <span class="text-xs uppercase tracking-[0.25em] text-primary font-bold">Smash Balloon Live Social Feed</span>
+      </div>
+      <h1 class="font-display font-extrabold text-5xl sm:text-7xl text-white leading-tight">
+        Live Event Gallery &<br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-accent">Social Media Feed</span>
+      </h1>
+      <p class="mt-4 text-base text-foreground/80 font-light">
+        Explore live footage, behind-the-scenes stage setups, cold spark entrance bursts, and client posts synced directly from Instagram, Facebook, and TikTok.
+      </p>
+    </div>
+
+    <!-- Smash Balloon Account Profiles Header -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      <!-- Instagram Profile Card -->
+      <div class="glass-card rounded-3xl p-6 flex items-center justify-between border border-white/10">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl overflow-hidden border-2 border-[#dc2743]">
+            <img src="{{ accounts.instagram.avatar }}" alt="Instagram" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <div class="font-display font-bold text-white text-base">{{ accounts.instagram.name }}</div>
+            <div class="text-xs text-primary font-semibold">{{ accounts.instagram.handle }}</div>
+            <div class="text-[11px] text-foreground/60 mt-0.5">{{ accounts.instagram.followers }} Followers · {{ accounts.instagram.posts_count }} Posts</div>
+          </div>
+        </div>
+        <a href="{{ accounts.instagram.url }}" target="_blank" rel="noopener noreferrer" class="smash-balloon-badge-instagram text-xs font-bold px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-transform shrink-0">
+          Follow
+        </a>
+      </div>
+
+      <!-- Facebook Profile Card -->
+      <div class="glass-card rounded-3xl p-6 flex items-center justify-between border border-white/10">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl overflow-hidden border-2 border-[#1877f2]">
+            <img src="{{ accounts.facebook.avatar }}" alt="Facebook" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <div class="font-display font-bold text-white text-base">{{ accounts.facebook.name }}</div>
+            <div class="text-xs text-[#1877f2] font-semibold">{{ accounts.facebook.handle }}</div>
+            <div class="text-[11px] text-foreground/60 mt-0.5">{{ accounts.facebook.followers }} Followers · {{ accounts.facebook.likes_count }} Likes</div>
+          </div>
+        </div>
+        <a href="{{ accounts.facebook.url }}" target="_blank" rel="noopener noreferrer" class="smash-balloon-badge-facebook text-xs font-bold px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-transform shrink-0">
+          Like Page
+        </a>
+      </div>
+
+      <!-- TikTok Profile Card -->
+      <div class="glass-card rounded-3xl p-6 flex items-center justify-between border border-white/10 sm:col-span-2 lg:col-span-1">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl overflow-hidden border-2 border-primary">
+            <img src="{{ accounts.tiktok.avatar }}" alt="TikTok" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <div class="font-display font-bold text-white text-base">{{ accounts.tiktok.name }}</div>
+            <div class="text-xs text-primary font-semibold">{{ accounts.tiktok.handle }}</div>
+            <div class="text-[11px] text-foreground/60 mt-0.5">{{ accounts.tiktok.followers }} Followers</div>
+          </div>
+        </div>
+        <a href="{{ accounts.tiktok.url }}" target="_blank" rel="noopener noreferrer" class="smash-balloon-badge-tiktok text-xs font-bold px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-transform shrink-0">
+          Follow
+        </a>
+      </div>
+    </div>
+
+    <!-- Smash Balloon Platform Filter Tabs -->
+    <div class="flex items-center gap-3 mb-10 overflow-x-auto pb-2 no-scrollbar">
+      <button type="button" data-platform="all" class="sb-tab-btn bg-primary text-background font-bold text-xs px-6 py-3 rounded-full transition-all">
+        All Feeds
+      </button>
+      <button type="button" data-platform="instagram" class="sb-tab-btn glass-cyber text-foreground/70 text-xs px-6 py-3 rounded-full hover:text-white transition-all">
+        📸 Instagram
+      </button>
+      <button type="button" data-platform="facebook" class="sb-tab-btn glass-cyber text-foreground/70 text-xs px-6 py-3 rounded-full hover:text-white transition-all">
+        👍 Facebook
+      </button>
+      <button type="button" data-platform="tiktok" class="sb-tab-btn glass-cyber text-foreground/70 text-xs px-6 py-3 rounded-full hover:text-white transition-all">
+        🎵 TikTok Videos
+      </button>
+    </div>
+
+    <div class="mb-8 rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/10 via-card to-accent/10 p-6 sm:p-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div>
+        <div class="inline-flex items-center gap-2 rounded-full bg-secondary/80 border border-primary/20 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.25em] text-primary mb-3">
+          Latest Instagram Update
+        </div>
+        <h2 class="font-display font-bold text-2xl text-white mb-2">See the newest Skyfall post on Instagram</h2>
+        <p class="text-sm text-foreground/70 max-w-2xl">Your events page now opens your Instagram profile directly so visitors can jump straight to your newest content, event highlights, and behind-the-scenes clips.</p>
+      </div>
+      <a href="{{ accounts.instagram.url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-background shadow-lg shadow-primary/20 hover:scale-105 transition-transform shrink-0">
+        Open Instagram Profile
+      </a>
+    </div>
+
+    <!-- Smash Balloon Grid -->
+    <div id="smashBalloonGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for post in instagram_posts %}
+      <div class="sb-post-card group"
+           data-title="{{ post.title }}"
+           data-caption="{{ post.caption }}"
+           data-image="{{ post.image_url }}"
+           data-platform="instagram"
+           data-handle="@skyfall_sound_and_light"
+           data-author="Skyfall Sound & Light"
+           data-avatar="/static/images/skyfall_logo.jpg"
+           data-likes="340"
+           data-comments="25"
+           data-timestamp="Latest Post"
+           data-url="{{ post.post_url }}">
+        <div class="aspect-square relative overflow-hidden">
+          <img src="{{ post.image_url }}" alt="{{ post.title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.onerror=null; this.src='/static/images/hero_stage.jpg'">
+          
+          <div class="absolute inset-x-0 top-0 p-3 flex items-start justify-between">
+            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full smash-balloon-badge-instagram">
+              Instagram
+            </span>
+            <span class="rounded-full bg-black/50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">Pinned</span>
+          </div>
+
+          <div class="sb-post-overlay opacity-100 md:opacity-0">
+            <div class="flex items-center gap-2">
+              <div class="w-7 h-7 rounded-full overflow-hidden bg-white/20">
+                <img src="/static/images/skyfall_logo.jpg" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/static/images/skyfall_logo.jpg'">
+              </div>
+              <span class="text-xs font-bold text-white">@skyfall_sound_and_light</span>
+            </div>
+            <p class="text-xs text-white/90 line-clamp-3 leading-relaxed">{{ post.caption }}</p>
+            <div class="flex items-center justify-between text-xs text-primary font-bold">
+              <span>❤️ 340</span>
+              <span>💬 25</span>
+              <span class="text-[10px] text-white/60">Latest Post</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Load More Callout -->
+    <div class="mt-12 text-center">
+      <a href="{{ accounts.instagram.url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full glass-cyber border border-white/15 px-8 py-4 text-sm font-bold text-white hover:border-primary transition-all">
+        View More Posts on Instagram
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Smash Balloon Lightbox Modal -->
+<div id="smashLightboxModal" class="fixed inset-0 z-[80] flex items-center justify-center p-4 transition-all duration-300 opacity-0 pointer-events-none">
+  <div id="smashLightboxBackdrop" class="absolute inset-0 bg-background/95 backdrop-blur-2xl"></div>
+  <div class="modal-dialog relative w-full max-w-4xl bg-card border border-white/15 rounded-3xl overflow-hidden shadow-2xl transition-all transform translate-y-8 max-h-[90vh] flex flex-col md:flex-row">
+    
+    <button id="closeSmashLightboxBtn" class="absolute top-4 right-4 z-20 inline-flex items-center justify-center w-10 h-10 rounded-full glass-cyber text-white hover:text-primary transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+    </button>
+
+    <!-- Image Preview Left -->
+    <div class="md:w-1/2 bg-black flex items-center justify-center relative min-h-[300px]">
+      <img id="sbLbImage" src="" class="w-full h-full object-cover">
+    </div>
+
+    <!-- Content Details Right -->
+    <div class="md:w-1/2 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto no-scrollbar max-h-[500px] md:max-h-none">
+      <div>
+        <!-- Profile Header -->
+        <div class="flex items-center gap-3 pb-4 mb-4 border-b border-white/10">
+          <img id="sbLbAvatar" src="" class="w-11 h-11 rounded-full object-cover border border-primary">
+          <div>
+            <div id="sbLbAuthor" class="font-display font-bold text-white text-base"></div>
+            <div id="sbLbHandle" class="text-xs text-primary font-medium"></div>
+          </div>
+        </div>
+
+        <!-- Full Caption -->
+        <p id="sbLbCaption" class="text-sm text-foreground/80 leading-relaxed mb-6"></p>
+      </div>
+
+      <div>
+        <!-- Metrics -->
+        <div class="flex items-center justify-between py-4 border-t border-white/10 text-xs text-foreground/60 mb-6">
+          <span class="flex items-center gap-1 font-bold text-white"><span class="text-accent">❤️</span> <span id="sbLbLikes"></span> Likes</span>
+          <span class="flex items-center gap-1 font-bold text-white">💬 <span id="sbLbComments"></span> Comments</span>
+          <span id="sbLbTimestamp" class="text-[11px]"></span>
+        </div>
+
+        <!-- Call to Action -->
+        <a id="sbLbLink" href="" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary text-background font-bold text-sm py-3.5 shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
+          View Original Social Post
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
